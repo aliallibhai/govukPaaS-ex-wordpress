@@ -124,14 +124,11 @@ Please read the following before using Wordpress in production on CloudFoundry.
 
 1. This is not an issue with Wordpress specifically, but PHP stores session information to the local disk.  As mentioned previously, the local disk for an application on CloudFoundry is ephemeral, so it is possible for you to lose session and session data.  If you need reliable session storage, look at storing session data in an SQL database or with a NoSQL service.
 
-### License
-
-This project is licensed under the Apache v2 license.
 
 [here]: https://github.com/cloudfoundry-samples/cf-ex-wordpress
 [WordPress version]: https://wordpress.org/download/
 [PHP Build Pack]:https://github.com/cloudfoundry/php-buildpack
-[secret keys]:https://github.com/dmikusa-pivotal/cf-ex-worpress/blob/master/wp-config.php#L49
+[secret keys]:https://github.com/aliallibhai/govukPaaS-ex-wordpress/blob/master/wp-config.php#L49
 [WordPress.org secret-key service]:https://api.wordpress.org/secret-key/1.1/salt
 [local storage on CloudFoundry]:http://docs.cloudfoundry.org/devguide/deploy-apps/prepare-to-deploy.html#filesystem
 [wp-content directory]:http://codex.wordpress.org/Determining_Plugin_and_Content_Directories
