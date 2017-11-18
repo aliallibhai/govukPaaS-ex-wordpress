@@ -17,28 +17,27 @@
  *
  * @package WordPress
  */
-$services = getenv("VCAP_SERVICES");
-$services_json = json_decode($services,true);
-$mysql_config = $services_json["mysql"][0]["credentials"];
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-error_log('');
-define('DB_NAME', $mysql_config["name"]);
+ $services = getenv("VCAP_SERVICES");
+ $services_json = json_decode($services,true);
+ $mysql_config = $services_json["mysql"][0]["credentials"];
+ // ** MySQL settings - You can get this info from your web host ** //
+ /** The name of the database for WordPress */
+ error_log('');
+ define('DB_NAME', $mysql_config["name"]);
 
-/** MySQL database username */
-define('DB_USER', $mysql_config["username"]);
+ /** MySQL database username */
+ define('DB_USER', $mysql_config["username"]);
 
-/** MySQL database password */
-define('DB_PASSWORD', $mysql_config["password"]);
+ /** MySQL database password */
+ define('DB_PASSWORD', $mysql_config["password"]);
 
-/** MySQL hostname */
-define('DB_HOST', $mysql_config["host"]);
+ /** MySQL hostname */
+ define('DB_HOST', $mysql_config["host"]);
 
-/** Enabling SSL */
-define('MYSQL_CLIENT_FLAGS', MYSQL_CLIENT_SSL);
+ /** Enabling SSL */
+ define('MYSQL_CLIENT_FLAGS', MYSQL_CLIENT_SSL);
 
-define('MYSQL_SSL_CERT', "/etc/ssl/certs/ca-certificates.crt");
-
+ define('MYSQL_SSL_CERT', "/etc/ssl/certs/ca-certificates.crt");
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
 
