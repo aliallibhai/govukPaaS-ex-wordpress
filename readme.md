@@ -50,7 +50,7 @@ There is some useful discussion of these solutions [here]
 
 These changes were made to prepare Wordpress to run on CloudFoundry.
 
-1. Edit `wp-config.php`, configure to use CloudFoundry database. This is done by
+1. Edit `wp-config.php`, configure to use CloudFoundry database and connect to it over SSL.
 
 ```diff
 *
