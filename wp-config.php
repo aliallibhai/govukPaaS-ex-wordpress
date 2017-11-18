@@ -17,10 +17,11 @@
  *
  * @package WordPress
  */
+ // ** Get MYSQL database info from Cloud Foundry ** //
  $services = getenv("VCAP_SERVICES");
  $services_json = json_decode($services,true);
  $mysql_config = $services_json["mysql"][0]["credentials"];
- // ** MySQL settings - You can get this info from your web host ** //
+ // ** Take the information we gathered from Cloud Foundry and define it in the standard wordpress fields ** //
  /** The name of the database for WordPress */
  error_log('');
  define('DB_NAME', $mysql_config["name"]);
@@ -36,8 +37,8 @@
 
  /** Enabling SSL */
  define('MYSQL_CLIENT_FLAGS', MYSQL_CLIENT_SSL);
-
  define('MYSQL_SSL_CERT', "/etc/ssl/certs/ca-certificates.crt");
+
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
 

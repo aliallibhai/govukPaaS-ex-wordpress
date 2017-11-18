@@ -1598,8 +1598,9 @@ class wpdb {
 					$socket = $port_or_socket;
 				}
 			}
-/*ADDED per https://core.trac.wordpress.org/ticket/28625*/
-/* call set_ssl if mysql client flag set and settings available*/
+			/*Enable WordPress to connect to Amazon RDS over SSL.
+						* ADDED per https://core.trac.wordpress.org/ticket/28625 */
+						/* call set_ssl if mysql client flag set and settings available*/
 if ( $client_flags & MYSQL_CLIENT_SSL ) {
     $pack = array( $this->dbh );
     $call_set = false;
