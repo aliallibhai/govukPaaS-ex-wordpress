@@ -1,4 +1,4 @@
 applications:
-- name: wpja
+- name: wordpress
   services:
-  - wpdb1
+  - wpdb
