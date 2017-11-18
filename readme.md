@@ -15,7 +15,7 @@ This is an out-of-the-box implementation of Wordpress 4.0.  It's an example of h
 
 2. Download and unzip the latest version of [WordPress]
 
-3. Move all of the WordPress files into your govukPaaS-ex-wordpress folder. Be careful not to overwrite the '`wp-config.php` and `wp-db.php` files.
+3. Move all of the WordPress files into your govukPaaS-ex-wordpress folder. Be careful not to overwrite the `/wp-config.php` and `/wp-includes/wp-db.php` files.
 
 4.  If you don't have one already, create a MySQL service.  With GOV.UK PaaS, the following command will create a free MySQL database through MySql. Here we have named the database wpdb, but you can pick a name of your choice.
 
@@ -23,9 +23,9 @@ This is an out-of-the-box implementation of Wordpress 4.0.  It's an example of h
   cf create-service mysql free wpdb
   ```
 
-5. Edit the manifest.yml file.  Change the 'name' attribute to something unique.  Then under "services:" change "wpdb" to the name of your MySQL service.  This is the name of the service that will be bound to your application and thus used by WordPress.
+5. Edit the `/manifest.yml` file.  Change the 'name' attribute to something unique.  Then under "services:" change "wpdb" to the name of your MySQL service.  This is the name of the service that will be bound to your application and thus used by WordPress.
 
-6. Like every normal Wordpress install, edit `wp-config.php` and change the [secret keys].  These should be uniqe for every installation.  You can generate these using the [WordPress.org secret-key service].
+6. Like every normal Wordpress install, edit `/wp-config.php` and change the [secret keys].  These should be unique for every installation.  You can generate these using the [WordPress.org secret-key service].
 
 7. Push it to CloudFoundry.
 
@@ -50,7 +50,9 @@ There is some useful discussion of these solutions [here]
 
 These changes were made to prepare Wordpress to run on CloudFoundry.
 
-1. Edit `wp-config.php`, configure to use CloudFoundry database and connect to it over SSL.
+1. Make two changes to `/wp-config.php`
+    1. Configure it to use CloudFoundry to get database information.
+    2. Configure it to connect to our database over SSL, this is a requirement for all connections.
 
 ```diff
 *
@@ -86,7 +88,7 @@ These changes were made to prepare Wordpress to run on CloudFoundry.
  define('DB_CHARSET', 'utf8');
 ```
 
-2. Edit `wp-db.php` file, configure to enable SSL connections to the MySQL database.
+2. Edit `/wp-includes/wp-db.php` file, configure to enable SSL connections to the MySQL database.
 ```diff
 +     /*Enable WordPress to connect to Amazon RDS over SSL.
 +       * ADDED per https://core.trac.wordpress.org/ticket/28625 */
@@ -115,6 +117,14 @@ These changes were made to prepare Wordpress to run on CloudFoundry.
         @mysqli_real_connect( $this->dbh, $host, $this->dbuser, $this->dbpassword, null, $port, $socket, $client_flags );
       }
 ````
+3. Enable the relevant services in the `/.bp-config/options.json`
+```bash
+{
+  "PHP_EXTENSIONS": ["mysql", "mysqli", "mcrypt", "gd", "zip", "curl", "openssl", "sockets"]
+
+
+}
+```
 
 ### Caution
 
