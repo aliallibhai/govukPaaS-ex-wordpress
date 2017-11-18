@@ -1,0 +1,5 @@
+{
+  "PHP_EXTENSIONS": ["mysql", "mysqli", "mcrypt", "gd", "zip", "curl", "openssl", "sockets"]
+  
+  
+}
